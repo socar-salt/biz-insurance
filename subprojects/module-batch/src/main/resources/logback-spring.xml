@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 60초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
+<configuration scan="true" scanPeriod="60 seconds">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <!--springProfile 태그를 사용하면 logback 설정파일에서 복수개의 프로파일을 설정할 수 있다.-->
+    <springProfile name="prod">
+        <property resource="application.yml"/>
+    </springProfile>
+
+    <springProfile name="dev">
+        <property resource="application-dev.yml"/>
+    </springProfile>
+
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+    <!--Environment 내의 프로퍼티들을 개별적으로 설정할 수도 있다.-->
+    <springProperty scope="context" name="LOG_LEVEL" source="${logging.level.root}"/>
+
+    <!-- pattern -->
+    <property name="LOG_PATTERN" value="%clr(%-5p) %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([${springAppName:-}]){yellow} %clr(${PID:- }){magenta} %clr([%logger{0}:%line]){cyan} - %msg%n"/>
+
+    <!-- appender -->
+    <include resource="log-policies/CONSOLE.xml" />
+    <include resource="log-policies/SENTRY.xml" />
+
+    <!-- dev -->
+    <springProfile name="dev">
+        <!-- root레벨 설정 -->
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="SENTRY"/>
+        </root>
+    </springProfile>
+
+    <!-- prod -->
+    <springProfile name="prod">
+        <!-- root레벨 설정 -->
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="SENTRY"/>
+        </root>
+    </springProfile>
+
+    <!-- 특정패키지 로깅레벨 설정 -->
+<!--    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--        <appender-ref ref="FILE"/>-->
+<!--        <appender-ref ref="ERROR"/>-->
+<!--    </logger>-->
+</configuration>

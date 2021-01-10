@@ -1,0 +1,49 @@
+spring:
+  output.ansi.enabled: always # 콘솔 창에 출력되는 로깅 메세지를 색으로 구분해서 출력
+  main.allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      naming.physical-strategy: kr.co.socarcorp.insurance.core.config.CustomPhysicalNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: ${datasources.socar.dialect}
+  datasource:
+    hikari:
+      max-lifetime: ${HIKARI_MAX_LIFE_TIME:580000}  # (단위:ms)커넥션 풀에서 살아있을 수 있는 커넥션의 최대 수명시간 (데이터베이스나 인프라의 적용된 wait-timeout limit보다 작아야함)
+
+socar:
+  datasource:
+    driver-class-name: ${datasources.socar.driver-class-name}
+    url: ${datasources.socar.url}
+    username: ${datasources.socar.username}
+    password: ${datasources.socar.password}
+  dialect: ${datasources.socar.dialect}
+  persistence-unit: socar
+  entity-package: kr.co.socarcorp.insurance.domain.socar
+  ddl-auto: none
+
+socarlog:
+  datasource:
+    driver-class-name: ${datasources.socarlog.driver-class-name}
+    url: ${datasources.socarlog.url}
+    username: ${datasources.socarlog.username}
+    password: ${datasources.socarlog.password}
+  dialect: ${datasources.socar.dialect}
+  persistence-unit: socarlog
+  entity-package: kr.co.socarcorp.insurance.domain.socarlog
+  ddl-auto: none
+
+accidentmanagement:
+  datasource:
+    driver-class-name: ${datasources.accidentmanagement.driver-class-name}
+    url: ${datasources.accidentmanagement.url}
+    username: ${datasources.accidentmanagement.username}
+    password: ${datasources.accidentmanagement.password}
+  dialect: ${datasources.accidentmanagement.dialect}
+  persistence-unit: accidentmanagement
+  entity-package: kr.co.socarcorp.insurance.domain.accidentmanagement
+  ddl-auto: none
+
+external:
+  okstra: https://okstra.socarcorp.co.kr/external_insurance

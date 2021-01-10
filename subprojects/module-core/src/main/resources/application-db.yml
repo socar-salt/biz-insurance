@@ -1,0 +1,19 @@
+datasources:
+  socar:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://socar-dev-db.cluster-cbtgdmndtz4d.ap-northeast-2.rds.amazonaws.com:3306/socar_dev?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: dev_app
+    password: appsocar12#$
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  socarlog:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://socar-dev-db.cluster-cbtgdmndtz4d.ap-northeast-2.rds.amazonaws.com:3306/socar_log?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: dev_app
+    password: appsocar12#$
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  accidentmanagement:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://socar-dev-db.cluster-cbtgdmndtz4d.ap-northeast-2.rds.amazonaws.com:3306/socar_dev?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: dev_app
+    password: appsocar12#$
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
